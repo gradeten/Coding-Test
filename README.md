@@ -1,2 +1,2 @@
 # Programmers
-This is an auto push repository for Baekjoon Online Judge created with [BaekjoonHub](https://github.com/BaekjoonHub/BaekjoonHub).
+C++ 학습을 위한 문제풀이
