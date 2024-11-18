@@ -8,16 +8,20 @@ int main()
 {
     int n, a, max, min;
     vector<int> v;
-    cin >> n;
     
-    for(int i = 0; i < n; i++)
+    cin >> n;
+    cin >> a;
+    min = a;
+    max = a;
+    
+    v.push_back(a);
+    
+    for(int i = 1; i < n; i++)
     {
         cin >> a;
-        v.push_back(a);
+        if (a > max) max = a;
+        if (a < min) min = a;
     }
-    
-    max = *max_element(v.begin(), v.end());
-    min = *min_element(v.begin(), v.end());
     
     cout << min << " " << max;
 }
