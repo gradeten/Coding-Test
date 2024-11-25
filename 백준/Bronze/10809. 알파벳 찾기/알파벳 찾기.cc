@@ -1,28 +1,20 @@
-#include <stdio.h>
 #include <iostream>
+#include <string>
 using namespace std;
 
-int main()
-{
+int main() {
     string s;
     cin >> s;
-    
-    for(int i = 97; i <= 122; i++)
-    {
-        bool found = false;
-        for(int j = 0; j < s.size(); j++)
-        {
-            if (char(i) == s[j])
-            {
-                cout << j << " ";
-                found = true;
-                break;
-            }
-        }
+
+    for (int i = 97; i <= 122; i++) {
+        size_t position = s.find(char(i)); 
         
-        if (!found)
-        {
-            cout << -1 << " ";
+        if (position != string::npos) {
+            cout << position << " ";  
+        } 
+        else {
+            cout << -1 << " ";  
         }
     }
+    
 }
