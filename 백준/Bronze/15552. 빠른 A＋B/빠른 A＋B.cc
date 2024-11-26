@@ -1,5 +1,4 @@
 #include <iostream>
-
 using namespace std;
 
 int main(void)
@@ -15,6 +14,4 @@ int main(void)
         cin >> A >> B;
         cout << A + B << '\n';
     }
-
-    return 0;
 }
