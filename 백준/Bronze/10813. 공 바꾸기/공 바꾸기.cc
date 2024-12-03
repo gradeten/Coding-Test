@@ -12,9 +12,9 @@ int main()
     
     vector<int> v(m);
     
-    for(int i = 1; i <= m; i++)
+    for(int i = 0; i < m; i++)
     {
-        v[i-1] = i;
+        v[i] = i+1;
     }
     
     for(int j = 0; j < n; j++)
