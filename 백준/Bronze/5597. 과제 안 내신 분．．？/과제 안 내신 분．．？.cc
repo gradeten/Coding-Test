@@ -11,7 +11,7 @@ int main()
     for(int i = 0; i < 28; i++)
     {
         cin >> a;
-        v[a-1] = a;
+        v[a-1] = 1;
     }
     
     for(int i = 0; i < 30; i++)
