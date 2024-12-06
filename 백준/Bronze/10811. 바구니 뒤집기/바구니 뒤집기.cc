@@ -1,12 +1,12 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 int main()
 {
     int n, m, a, b;
     vector<int> v;
-    vector<int> vt;
     cin >> n >> m;
     
     for(int i = 0; i < n; i++)
@@ -17,11 +17,7 @@ int main()
     for(int i = 0; i < m; i++)
     {
         cin >> a >> b;
-        vt = v;
-        for(int j = a; j <= b; j++)
-        {
-            v[j-1] = vt[a+b-j-1];
-        }
+        reverse(v.begin() + (a-1), v.begin() + b);
     }
     
     for(int element : v)
