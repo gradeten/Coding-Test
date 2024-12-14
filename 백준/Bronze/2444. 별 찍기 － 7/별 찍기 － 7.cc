@@ -17,13 +17,7 @@ int main()
     int n;
     cin >> n;
     
-    if (n == 1)
-    {
-        cout << "*";
-    }
-    else
-    {
-        for(int i = 1; i <= 2*n-1; i+=2)
+    for(int i = 1; i <= 2*n-1; i+=2)
         {
             printStar(i, n);
         }
@@ -32,7 +26,6 @@ int main()
         {
             printStar(i, n);
         }
-    }
     
 }
 
