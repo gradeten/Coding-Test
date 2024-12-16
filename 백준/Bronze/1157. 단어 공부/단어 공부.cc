@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
     string s;
-    map<char,int> m;
+    int freq[26] = {0};
     int max = 0;
     char alphabet;
     bool is_duplicate = false;
@@ -20,25 +20,18 @@ int main()
     
     for(int i = 0; i < s.length(); i++)
     {
-        if(m.count(s[i]) == 0)
-        {
-            m[s[i]] = 1;
-        }
-        else
-        {
-            m[s[i]] += 1;
-        }
+        freq[s[i] - 'A']++;
     }
     
-    for(auto j = m.begin(); j != m.end(); j++)
+    for(int i = 0; i < 26; i++)
     {
-        if (j->second > max)
+        if (freq[i] > max)
         {
-            max = j->second;
-            alphabet = j->first;
+            max = freq[i];
+            alphabet = 'A' + i;
             is_duplicate = false;
         }
-        else if (j->second == max)
+        else if (freq[i] == max)
         {
             is_duplicate = true;
         }
