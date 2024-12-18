@@ -6,32 +6,30 @@ using namespace std;
 int main()
 {
     string s;
-    float mark;
+    float credit;
     string grade;
-    float total_mark = 0;
+    float total_credit = 0;
     float total_grade = 0;
     string grades[8] = {"A+", "A0", "B+", "B0", "C+", "C0", "D+", "D0"};
     
     for(int i = 0; i < 20; i++)
     {
-                cin >> s;
-                cin >> mark;
-                cin >> grade;
+                cin >> s >> credit >> grade;
                 if (grade == "P")
                 {
                     continue;
                 }
                 else if (grade == "F")
                 {
-                    total_mark+=mark;
+                    total_credit+=credit;
                 }
                 else
                 {
-                    total_mark+=mark;
+                    total_credit+=credit;
                     int index = find(grades, grades + 8, grade) - grades;
-                    total_grade += (4.5-0.5*index)*(mark);
+                    total_grade += (4.5-0.5*index)*(credit);
                 }
     }
     
-    cout << (total_grade/total_mark);
+    cout << (total_grade/total_credit);
 }
