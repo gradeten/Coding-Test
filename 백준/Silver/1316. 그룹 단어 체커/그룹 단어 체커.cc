@@ -1,7 +1,5 @@
 #include <iostream>
-#include <vector>
 #include <string>
-#include <algorithm>
 using namespace std;
 
 int main()
@@ -9,32 +7,31 @@ int main()
     int n;
     string s;
     int groupCount = 0;
-    vector<char> v;
     
     cin >> n;
 
     
     for(int i = 0; i < n; i++)
     {
-        bool isGroup = true;
         cin >> s;
-        v.push_back(s[0]);
+        bool isGroup = true;
+        bool appeared[26] = {false};
+        appeared[s[0]-'a'] = true;
         
         for(int j = 1; j < s.size(); j++)
         {
-            if (count(v.begin(), v.end(), s[j]) != 0 && s[j-1] != s[j])
+            if (s[j] != s[j-1])
             {
-                isGroup = false;
-                break;
-            }
-            else
-            {
-                v.push_back(s[j]);
+                if (appeared[s[j]-'a'])
+                {
+                    isGroup = false;
+                    break;
+                }
+                appeared[s[j]-'a'] = true;
             }
         }
         
         if(isGroup) groupCount++;
-        v.clear();
     }
     
     cout << groupCount;
