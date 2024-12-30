@@ -8,7 +8,7 @@ int main()
     while (1)
     {
         cin >> a >> b;
-        if(a == 0 && b == 0) return 0;
+        if(a == 0 && b == 0) break;
         if (a % b == 0)
         {
             cout << "multiple" << endl;
@@ -22,5 +22,5 @@ int main()
             cout << "neither" << endl;
         }
     }
-    return 0;
+
 }
