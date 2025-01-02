@@ -6,16 +6,15 @@ using namespace std;
 int main()
 {
     int n;
-    int sum = 0;
     vector<int> v;
     cin >> n;
     
     while(n != -1)
     {
-        sum = 0;
-        v = {};
+        int sum = 0;
+        v.clear();
         
-        for(int i = 1; i<= n-1; i++)
+        for(int i = 1; i<= n/2; i++)
         {
             if (n % i == 0)
             {
@@ -23,20 +22,18 @@ int main()
             }
         }
         
-        int size = v.size();
-        
-        for(int j = 0; j < size; j++)
+        for(int val: v)
         {
-            sum += v[j];
+            sum += val;
         }
 
         if(sum == n)
         {
             cout << n << " = ";
-            for(int j = 0; j < size; j++)
+            for(int j = 0; j < v.size(); j++)
             {
                 cout << v[j];
-                if (j != size-1) cout << " + ";
+                if (j != v.size()-1) cout << " + ";
             }
             cout << endl;
         }
