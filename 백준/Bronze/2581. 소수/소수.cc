@@ -24,7 +24,7 @@ int main()
                 break;
             }
         }
-        if(!isComposite )
+        if(!isComposite)
         {
             sum += i;
             if (least == 0) least = i;
