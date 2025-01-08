@@ -5,20 +5,19 @@ using namespace std;
 
 int main()
 {
-    int n, a;
-    vector<int> x;
-    vector<int> y;
+    int n, x, y;
+    int minX = 1000001, maxX = -1000001;
+	int minY = 1000001, maxY = -1000001;
     
     cin >> n;
     for(int i = 0; i < n; i++)
     {
-        cin >> a;
-        x.push_back(a);
-        cin >> a;
-        y.push_back(a);
+        cin >> x >> y;
+        if (x > maxX) maxX = x;
+        if (x < minX) minX = x;
+        if (y > maxY) maxY = y;
+        if (y < minY) minY = y;
     }
     
-    int width = (*max_element(x.begin(), x.end())) - (*min_element(x.begin(), x.end()));
-    int height = (*max_element(y.begin(), y.end())) - (*min_element(y.begin(), y.end()));
-    cout << width * height;
+    cout << (maxX - minX) * (maxY - minY);
 }
