@@ -1,6 +1,4 @@
-#include <stdio.h>
 #include <iostream>
-#include <vector>
 using namespace std;
 
 int main()
@@ -9,8 +7,6 @@ int main()
     cin.tie(0);
     
     int l, n, a;
-    vector<int> v;
-    
     cin >> l;
     cin >> n;
     
