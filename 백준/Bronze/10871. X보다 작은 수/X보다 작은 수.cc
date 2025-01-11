@@ -5,6 +5,9 @@ using namespace std;
 
 int main()
 {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    
     int l, n, a;
     vector<int> v;
     
@@ -16,12 +19,7 @@ int main()
         cin >> a;
         if (a < n)
         {
-            v.push_back(a);
+            cout << a << " ";
         }
-    }
-    
-    for(int num : v)
-    {
-        cout << num << " ";
     }
 }
