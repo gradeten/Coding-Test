@@ -13,7 +13,7 @@ int main(void)
     for (int i = 0; i < 7; i++)
     {
         cin >> a;
-        if (a % 2 != 0)
+        if (a & 1)
         {
             if (a < min) min = a;
             sum += a;
