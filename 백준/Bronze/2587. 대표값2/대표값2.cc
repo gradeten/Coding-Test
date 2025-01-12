@@ -6,22 +6,11 @@ int main(void)
     ios::sync_with_stdio(0);
     cin.tie(0);
     
-    int a;
-    int sum = 0;
-    vector<int> v;
+    int num[5], sum;
     
-    for(int i = 0; i < 5; i++)
-    {
-        cin >> a;
-        v.push_back(a);
-    }
+    for(int i = 0; i < 5; i++) cin >> num[i];
+    for(int i = 0; i < 5; i++) sum += num[i];
+    sort(num, num + 5);
     
-    sort(v.begin(), v.end());
-    
-    for(int i = 0; i < 5; i++)
-    {
-        sum += v[i];
-    }
-    
-    cout << sum/5 << "\n" << v[2];
+    cout << sum/5 << "\n" << num[2];
 }
