@@ -27,6 +27,6 @@ int main(void)
     }
     else
     {
-        cout << "Y M " << y; 
+        cout << "Y M " << m; 
     }
 }
