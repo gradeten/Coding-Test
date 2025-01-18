@@ -10,17 +10,8 @@ int main(void)
     int A, B, C;
     cin >> A >> B >> C;
     
-    unsigned int result = A * B * C;
-    string s = to_string(result);
-    
-    for(int i = 0; i < s.size(); i++)
-    {
-        num[s[i]-'0']++;
-    }
-    
-    for(int i = 0; i < 10; i++)
-    {
-        cout << num[i] << " ";
-    }
+    string s = to_string(A * B * C);
+    for(int i = 0; i < s.size(); i++) num[s[i]-'0']++;
+    for(int i = 0; i < 10; i++) cout << num[i] << " ";
     
 }
