@@ -10,31 +10,27 @@ int main(void)
     cin >> n;
     
     stack<int> S;
-    vector<char> v;
+    string answer;
+    int cnt = 1;
 
-    int num[n];
-    int a = 1;
-    
-    for(int i = 0; i < n; i++) cin >> num[i];
-
-    for(int i = 0; i < n; i++)
+    while(n--)
     {
-        while (S.empty() || num[i] > S.top())
+        int t;
+        cin >> t;
+        while (cnt <= t)
         {
-            S.push(a);
-            v.push_back('+');
-            a++;
+            S.push(cnt++);
+            answer += "+\n";
         }
-        if (num[i] == S.top())
+        if (S.top() != t)
         {
-            S.pop();
-            v.push_back('-');
+            cout << "NO";
+            return 0;
         }
-        else break;
-        
-    }
+        S.pop();
+        answer += "-\n";
+     }
     
-    if (S.empty()) for (char c : v) cout << c << "\n";
-    else cout << "NO";
+     cout << answer;
 
 }
