@@ -10,7 +10,7 @@ int main(void)
     cin >> N;
     queue<int> Q;
     
-    for(int i = 1; i <= N; i++) Q.push(i);
+    for(int i = 1; i <= N; ++i) Q.push(i);
     
     while(Q.size() > 1)
     {
