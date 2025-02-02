@@ -17,20 +17,17 @@ int main(void)
         {
             S.push(s[i]);
         }
-        else if (s[i] == ')')
+        else
         {
-            if (!S.empty() && S.top() == '(')
+            if (s[i-1] == '(')
             {
                 S.pop();
-                if (s[i-2] == '(' && s[i-1] == ')')
-                {
-                    answer++;
-                }
-                else
-                {
-                    if (s[i-1] == ')') answer++;
-                    else answer += S.size();
-                }
+                answer += S.size();
+            }
+            else
+            {
+                S.pop();
+                answer++;
             }
         }
     }
