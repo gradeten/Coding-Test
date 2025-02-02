@@ -19,16 +19,8 @@ int main(void)
         
         for(char c : s)
         {
-            if (c == 'A')
-            {
-                if (!S.empty() && S.top() == 'A') S.pop();
-                else S.push(c);
-            }
-            else if (c == 'B')
-            {
-                if (!S.empty() && S.top() == 'B') S.pop();
-                else S.push(c);
-            }
+            if (!S.empty() && S.top() == c) S.pop();
+            else S.push(c);
         }
         
         if (S.empty()) answer++;
