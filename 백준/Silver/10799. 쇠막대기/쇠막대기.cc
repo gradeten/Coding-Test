@@ -25,13 +25,11 @@ int main(void)
                 if (s[i-2] == '(' && s[i-1] == ')')
                 {
                     answer++;
-                    // cout << answer << "\n";
                 }
                 else
                 {
                     if (s[i-1] == ')') answer++;
                     else answer += S.size();
-                    // cout << answer << "\n";
                 }
             }
         }
