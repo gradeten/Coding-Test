@@ -12,7 +12,6 @@ int main(void){
     ios::sync_with_stdio(0);
     cin.tie(0);
     
-    int answer = 2001;
     int r, c;
     cin >> r >> c;
     
@@ -30,13 +29,7 @@ int main(void){
          for (int j = 0; j < c; j++){
               cin >> board[i][j];
               if (board[i][j] == 'F') {fire[i][j] = 0; Q.push({i,j});}
-              else if (board[i][j] == 'J') {
-                  jihoon[i][j] = 0; a = i; b = j;
-                  if (i == 0 || i == r-1 || j == 0 || j == c-1) {
-                    cout << 1;
-                    return 0;
-                  }
-              }
+              else if (board[i][j] == 'J') {jihoon[i][j] = 0; a = i; b = j;}
          }
     }
     
@@ -60,17 +53,18 @@ int main(void){
         for(int dir = 0; dir < 4; dir++){
             int nx = cur.X + dx[dir];
             int ny = cur.Y + dy[dir];
-            if (nx < 0 || nx >= r || ny < 0 || ny >= c) continue;
+            if (nx < 0 || nx >= r || ny < 0 || ny >= c){
+                cout << jihoon[cur.X][cur.Y] + 1;
+                return 0;
+            }
             if (board[nx][ny] == '#' || jihoon[nx][ny] >= 0) continue;
             if (fire[nx][ny] != -1 && fire[nx][ny] <= jihoon[cur.X][cur.Y]+1) continue;
             jihoon[nx][ny] = jihoon[cur.X][cur.Y] + 1;
             Q.push({nx,ny});
-            if (nx == 0 || nx == r-1 || ny == 0 || ny == c-1) answer = min(answer, jihoon[nx][ny]);
         }
     }
 
 
-    if (answer > 2000) cout << "IMPOSSIBLE";
-    else cout << answer+1;
+    cout << "IMPOSSIBLE";
     
 }
