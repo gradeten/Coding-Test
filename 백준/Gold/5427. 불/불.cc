@@ -20,7 +20,7 @@ int main(void){
         
         int sangX, sangY;
         
-        queue<pair<int,int>> Q1, Q2;  // 불과 상근이를 위한 별도의 큐
+        queue<pair<int,int>> Q1, Q2;
         
         for(int i = 0; i < h; i++){
             for (int j = 0; j < w; j++){
