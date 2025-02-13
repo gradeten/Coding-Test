@@ -11,10 +11,7 @@ int main(void){
     
     int n, m;
     cin >> n >> m;
-    
-    bool isBreak = false;
-    bool isChange = false;
-    
+
     for(int i = 0; i < n; i++){
         string s;
         cin >> s;
