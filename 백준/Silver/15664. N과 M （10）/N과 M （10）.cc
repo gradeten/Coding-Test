@@ -3,27 +3,21 @@ using namespace std;
 int n, m;
 int arr[10];
 int ans[10];
-bool isused[10];
 
-void func(int k){
+void func(int k, int st){
     if (k == m){
-        for(int i = 0; i < m; i++) cout << arr[ans[i]] << ' ';
+        for(int i = 0; i < m; i++) cout << ans[i] << ' ';
         cout << '\n';
         return;
     }
-
-    int st = 0;
-    if(k != 0) st = ans[k-1] + 1;
     
     int prev = -1;
     
     for(int i = st; i < n; i++){
-        if (!isused[i] && arr[i] != prev){
-            isused[i] = 1;
-            ans[k] = i;
-            func(k+1);
-            isused[i] = 0;
-            prev = arr[i];
+        if (prev != arr[i]){
+            ans[k] = arr[i];
+            prev = ans[k];
+            func(k+1, i+1);
         }
     }
 }
@@ -36,5 +30,5 @@ int main(void){
     for(int i = 0; i < n; i++) cin >> arr[i];
     sort(arr, arr+n);
     
-    func(0);
+    func(0,0);
 }
