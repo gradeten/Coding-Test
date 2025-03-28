@@ -1,0 +1,15 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(void)
+{
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    
+    int a, b;
+    cin >> a >> b;
+    
+    int ans = b - a;
+    if (ans < 0) cout << ans+24;
+    else cout << ans;
+}
