@@ -5,30 +5,24 @@ using namespace std;
 vector<int> solution(vector<int> progresses, vector<int> speeds) {
     vector<int> answer;
     queue<int> q;
-    int day = 0;
-    int work = 0;
     
     for(int i = 0; i < progresses.size(); i++){
-        int a = ((100 - progresses[i])/speeds[i]);
-        if ((a*speeds[i] + progresses[i]) < 100){
-            a++;
-        }
+        int a = ceil((100.0 - progresses[i]) / speeds[i]);
         q.push(a);
     }
     
-    day = q.front(); q.pop(); work++;
-    while(!q.empty()){
-        if (day >= q.front()){
-            work++;
+    while (!q.empty()) {
+        int current = q.front(); q.pop();
+        int count = 1;
+
+        // 앞에 하나 pop했으니 q가 비었는지 꼭 확인해야 함
+        while (!q.empty() && q.front() <= current) {
             q.pop();
+            count++;
         }
-        else{
-            answer.push_back(work);
-            work = 0;
-            day = q.front(); q.pop(); work++;
-        }
+
+        answer.push_back(count);
     }
-    if (work != 0) answer.push_back(work);
-    
+
     return answer;
 }
