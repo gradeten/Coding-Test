@@ -2,7 +2,7 @@
 
 using namespace std;
 
-bool cmp(int a, int b){
+bool cmp(const int& a, const int& b){
     string x = to_string(a);
     string y = to_string(b);
     
@@ -13,10 +13,11 @@ string solution(vector<int> numbers) {
     string answer = "";
     sort(numbers.begin(), numbers.end(), cmp);
     
-    if (numbers[0] == 0) return "0";
     for (int i = 0; i < numbers.size(); i++){
         answer += to_string(numbers[i]);
     }
+    
+    if (answer[0] == '0') return "0";
     
     return answer;
 }
