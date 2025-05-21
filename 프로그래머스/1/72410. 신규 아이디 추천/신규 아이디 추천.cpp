@@ -1,70 +1,46 @@
 #include <string>
-#include <vector>
 #include <algorithm>
 
 using namespace std;
 
 string solution(string new_id) {
-    string answer = new_id;
-    // 1단계
-    for(int i = 0; i < new_id.size();i++){
-        if (new_id[i] <= 'Z' && new_id[i] >= 'A'){
-            new_id[i] += 32;
+    // 1단계: 대문자 → 소문자
+    for (char &c : new_id) {
+        if (isupper(c)) c = tolower(c);
+    }
+
+    // 2단계: 허용 문자만 남기기
+    string temp;
+    for (char c : new_id) {
+        if (islower(c) || isdigit(c) || c == '-' || c == '_' || c == '.') {
+            temp += c;
         }
     }
-    // 2단계
-    string s = "";
-    for(int i = 0; i < new_id.size();i++){
-        if ((new_id[i] >= 'A' && new_id[i] <= 'Z')||
-            (new_id[i] >= 'a' && new_id[i] <= 'z')||
-            (new_id[i] >= '0' && new_id[i] <= '9')||
-            (new_id[i] == '-')||(new_id[i] == '_')||(new_id[i] == '.')
-           )
-        {
-            s += new_id[i];
-        }
+
+    // 3단계: 마침표(.) 연속 제거
+    string result;
+    for (char c : temp) {
+        if (c == '.' && !result.empty() && result.back() == '.') continue;
+        result += c;
     }
-    new_id = s;
-    
-    // 3단계
-    s = "";
-    for(int i = 0; i < new_id.size(); i++){
-        if (s.size() == 0){
-            s += new_id[i];
-        }
-        else{
-            if (new_id[i] == '.'){
-                if (s[s.size()-1] != '.'){
-                    s += new_id[i];
-                }
-            }
-            else s += new_id[i];
-        }
+
+    // 4단계: 처음과 끝 마침표 제거
+    if (!result.empty() && result.front() == '.') result.erase(result.begin());
+    if (!result.empty() && result.back() == '.') result.pop_back();
+
+    // 5단계: 빈 문자열이면 'a'
+    if (result.empty()) result = "a";
+
+    // 6단계: 길이 15자 제한, 끝이 '.'면 제거
+    if (result.length() > 15) {
+        result = result.substr(0, 15);
+        if (result.back() == '.') result.pop_back();
     }
-    new_id = s;
-    
-    // 4단계
-    if (new_id[0] == '.') new_id.erase(0,1);
-    if (new_id[new_id.size()-1] == '.') new_id.erase(new_id.size()-1,1);
-    
-    // 5단계
-    if (new_id == ""){
-        new_id += 'a';
+
+    // 7단계: 길이 2 이하면 마지막 문자 반복
+    while (result.length() < 3) {
+        result += result.back();
     }
-    
-    // 6단계
-    if (new_id.size() >= 16){
-        new_id.erase(15, new_id.size() - 15);
-        if (new_id[new_id.size()-1] == '.') new_id.erase(new_id.size()-1,1);
-    }
-    
-    // 7단계
-    if (new_id.size() <= 2){
-        char c = new_id[new_id.size()-1];
-        while(new_id.size() != 3){
-            new_id += c;
-        }
-    }
-    
-    return new_id;
+
+    return result;
 }
