@@ -1,59 +1,75 @@
 #include <bits/stdc++.h>
 using namespace std;
+int n,k,l;
+int board[100][100] = {0};
+vector<pair<int,char>> v;
+queue<pair<int,int>> q;
+int cur_d = 0;
+int y, x;
+int dy[4] = {0,1,0,-1}; // 우 하 좌 상
+int dx[4] = {1,0,-1,0};
+int sec = 0;
 
-int n, k, l;
-int board[101][101];
-map<int,char> turn;
-int dx[4] = {1, 0, -1, 0}; // 동, 남, 서, 북
-int dy[4] = {0, 1, 0, -1}; 
+bool game(){
+    
+    sec++;
+
+    int ny = y + dy[cur_d];
+    int nx = x + dx[cur_d];
+    
+    if (ny < 0 || ny >= n || nx < 0 || nx >= n) return false;
+    if (board[ny][nx] == 1) return false;
+    if (board[ny][nx] == 2){
+        board[ny][nx] = 1;
+    }
+    else{
+        auto cur = q.front(); q.pop();
+        board[cur.first][cur.second] = 0;
+        board[ny][nx] = 1;
+    }
+
+    q.push({ny, nx});
+    y = ny;
+    x = nx;
+    
+        
+    for(int i = 0; i < l; i++){
+        if (sec == v[i].first){
+            if (v[i].second == 'L') cur_d = (cur_d+3)%4;
+            else if (v[i].second == 'D') cur_d = (cur_d+1)%4;
+            break;
+        }
+    }
+    
+    return true;
+}
 
 int main (void){
     ios::sync_with_stdio(0);
     cin.tie(0);
     
     cin >> n >> k;
-    while(k--){
-        int y, x;
-        cin >> y >> x;
-        board[y-1][x-1] = 1;
+    for(int i = 0; i < k; i++){
+        int r,c;
+        cin >> r >> c;
+        board[r-1][c-1] = 2;
     }
     
     cin >> l;
-    while(l--){
-        int t; char c;
-        cin >> t >> c;
-        turn[t] = c;
+    for(int i = 0; i < l; i++){
+        int t; char d;
+        cin >> t >> d;
+        v.push_back({t,d});
     }
     
-    deque<pair<int,int>> snake;
-    snake.push_back({0,0});
-    board[0][0] = 2;
+    board[0][0] = 1;
+    q.push({0,0});
+    y = 0; x = 0;
     
-    int time = 0;
-    int dir = 0;
-    
-    while(true){
-        time++;
-        int ny = snake.front().first + dy[dir];
-        int nx = snake.front().second + dx[dir];
-        
-        if (ny < 0 || ny >= n || nx < 0 || nx >= n || board[ny][nx] == 2) break;
-        if (board[ny][nx] == 1){
-            board[ny][nx] = 2;
-            snake.push_front({ny,nx});
-        }
-        else{
-            board[ny][nx] = 2;
-            snake.push_front({ny,nx});
-            auto tail = snake.back();
-            board[tail.first][tail.second] = 0;
-            snake.pop_back();
-        }
-        if (turn.count(time)){
-            if (turn[time] == 'L') dir = (dir+3) % 4;
-            else dir = (dir+1) % 4;
-        }
+    while(true)
+    {
+        if (!game()) break;
     }
     
-    cout << time;
+    cout << sec;
 }
