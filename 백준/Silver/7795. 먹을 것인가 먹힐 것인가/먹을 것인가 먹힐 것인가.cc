@@ -16,10 +16,7 @@ int main (){
         sort(a.begin(), a.end()); sort(b.begin(), b.end());
         
         for(int i = 0; i < a.size(); i++){
-            for(int j = 0; j < b.size(); j++){
-                if (a[i] > b[j]) ans++;
-                else break;
-            }
+            ans += (lower_bound(b.begin(), b.end(), a[i]) - b.begin());
         }
         cout << ans << "\n";
     }
