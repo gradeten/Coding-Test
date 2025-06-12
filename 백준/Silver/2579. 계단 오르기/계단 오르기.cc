@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 int n;
-int d[300][3];
+int d[300];
 int s[300];
 
 int main (){
@@ -9,19 +9,19 @@ int main (){
     cin.tie(0);
     
     cin >> n;
-    for(int i = 1; i <= n; i++) cin >> s[i]; 
-    
-    if (n == 1){
-        cout << s[1]; return 0;
+    int tot = 0;
+    for(int i = 1; i <= n; i++){
+        cin >> s[i]; 
+        tot += s[i];
     }
     
-    d[1][1] = s[1];
-    d[1][2] = 0;
-    d[2][1] = s[2];
-    d[2][2] = s[1] + s[2];
-    for(int i = 3; i <= n; i++){
-        d[i][1] = max(d[i-2][1],d[i-2][2]) + s[i];
-        d[i][2] = d[i-1][1] + s[i];
+    if (n <= 2){
+        cout << tot; return 0;
     }
-    cout << max(d[n][1],d[n][2]);
+    
+    d[1] = s[1]; d[2] = s[2]; d[3] = s[3];
+    for(int i = 4; i <= n; i++){
+        d[i] = min(d[i-2],d[i-3]) + s[i];
+    }
+    cout << tot - min(d[n-1],d[n-2]);
 }
