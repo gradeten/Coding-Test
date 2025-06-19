@@ -14,9 +14,7 @@ int main (){
     for(int i = 0; i < n; i++){
         d[i] = arr[i];
         for(int j = 0; j < i; j++){
-            if (arr[j] < arr[i]){
-                d[i] = max(d[i], d[j] + arr[i]);
-            }
+            if (arr[j] < arr[i]) d[i] = max(d[j]+arr[i], d[i]);
         }
     }
     
