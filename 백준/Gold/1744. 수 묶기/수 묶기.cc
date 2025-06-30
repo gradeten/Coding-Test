@@ -27,7 +27,7 @@ int main(){
     }
     else{
         for(int i = 0; i < plus.size()-1; i +=2) ans += (plus[i]*plus[i+1]);
-        ans += plus[plus.size()-1];
+        ans += plus.back();
     }
     
     if (minus.size() % 2 == 0){
@@ -36,11 +36,11 @@ int main(){
     else{
         for(int i = 0; i < minus.size()-1; i +=2) ans += (minus[i]*minus[i+1]);
         if (zero == 0){
-            ans += minus[minus.size()-1];
+            ans += minus.back();
         }
     }
     
-    for(int i = 0; i < one; i++) ans++;
+    ans += one;
     
     cout << ans;
 }
