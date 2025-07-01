@@ -15,18 +15,17 @@ int main(){
     int start = v[0].first;
     int end = v[0].second;
     
-    for(int i = 1; i < v.size(); i++){
+    for(int i = 1; i < n; i++){
         if (v[i].first <= end){
             end = max(end, v[i].second);
         }
         else{
-            ans += end - start;
+            ans += (end - start);
             start = v[i].first;
             end = v[i].second;
         }
     }
     
     ans += (end - start);
-    
     cout << ans;
 }
