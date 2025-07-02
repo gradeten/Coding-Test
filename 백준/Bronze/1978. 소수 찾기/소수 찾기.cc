@@ -1,28 +1,24 @@
 #include <iostream>
 using namespace std;
 
+bool isprime(int n){
+    if (n == 1) return 0;
+    for(int i = 2; i*i <= n; i++){
+        if (n % i == 0) return 0;
+    }
+    return 1;
+}
+
 int main()
 {
     int n, a;
     cin >> n;
-    
-    bool isComposite;
+
     int sum = 0;
     
-    for(int i = 0; i < n; i++)
-    {
-        isComposite = false;
+    for(int i = 0; i < n; i++){
         cin >> a;
-        for(int j = 2; j <= a/2; j++)
-        {
-            if (a % j == 0)
-            {
-                isComposite = true;
-                break;
-            }
-        }
-        
-        if(!isComposite&&a!=1) sum++;
+        sum += isprime(a);
     }
     
     cout << sum;
