@@ -7,14 +7,12 @@ int main(){
     
     int e, s, m;
     cin >> e >> s >> m;
-    if (e == 15) e = 0;
-    if (s == 28) s = 0;
-    if (m == 19) m = 0;
+    e--, s--, m--;
     
-    int ans = 1;
-    while(true){
-        if (ans % 15 == e && ans % 28 == s && ans % 19 == m) break;
-        ans++;
-    }
-    cout << ans;
+    int i = e;
+    while(i % 28 != s) i += 15;
+    
+    int l = lcm(15, 28);
+    while(i % 19 != m) i += l;
+    cout << i + 1;
 }
