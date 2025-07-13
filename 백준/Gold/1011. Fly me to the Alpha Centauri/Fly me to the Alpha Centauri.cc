@@ -7,9 +7,7 @@ int main(){
     
     int t; cin >> t;
     while(t--){
-        int x, y;
-        cin >> x >> y;
-        
+        int x, y; cin >> x >> y;
         int dist = y - x;
         int n = sqrt(dist);
         
@@ -23,4 +21,5 @@ int main(){
             cout << 2 * n + 1 << '\n';
         }
     }
+    
 }
