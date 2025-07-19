@@ -35,7 +35,7 @@ int main(){
     sort(a,a+n);
     
     cin >> m;
-    for(int i = 0; i < m; i++){
+    while(m--){
         int tar; cin >> tar;
         cout << upper_index(tar, n) - lower_index(tar, n) << " ";
     }
