@@ -27,9 +27,9 @@ int main(){
         freq[compressed]++;
     }
     
-    long long ans = 0;
+    int ans = 0;
     for (auto& [key, cnt] : freq) {
-        ans += 1LL * cnt * (cnt - 1) / 2;
+        ans += cnt * (cnt - 1) / 2;
     }
     cout << ans;
 }
