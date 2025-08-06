@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
 int n;
 int arr[100005];
+bool check[100005];
 
 int main(){
     ios::sync_with_stdio(0);
@@ -12,16 +12,16 @@ int main(){
     cin >> n;
     for(int i = 0; i < n; i++) cin >> arr[i];
     
-    unordered_set<int> s;
     int en = 0; 
-    ll ans = 0;
+    long long ans = 0;
+    check[arr[0]] = 1;
     for(int st = 0; st < n; st++){
-        while (en < n && s.find(arr[en]) == s.end()){
-            s.insert(arr[en]);
+        while (en < n-1 && !check[arr[en+1]]){
             en++;
+            check[arr[en]] = 1;
         }
-        ans += (en - st);
-        s.erase(arr[st]);
+        ans += (en - st + 1);
+        check[arr[st]] = 0;
     }
     
     cout << ans;
