@@ -25,14 +25,18 @@ int main(){
     sort(x,x+n);
     
     int st = 1;
-    int en = x[n-1] - x[0];
-    int ans = 0;
-    
-    while(st < en){
-        int mid = (st + en + 1)/2;
-        if (solve(mid)) st = mid;
-        else en = mid - 1;
+int en = x[n-1] - x[0];
+int ans = 0;
+
+while (st <= en) {
+    int mid = (st + en) / 2;   // 일반적인 중간값
+    if (solve(mid)) {
+        ans = mid;             // 가능한 값 저장
+        st = mid + 1;          // 더 큰 거리 시도
+    } else {
+        en = mid - 1;          // 줄이기
     }
+}
+cout << ans;
     
-    cout << st;
 }
