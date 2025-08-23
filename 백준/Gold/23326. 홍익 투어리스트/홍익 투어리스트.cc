@@ -1,38 +1,42 @@
 #include <bits/stdc++.h>
 using namespace std;
-int n, q;
 
-int main(){
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    
+
+    int n, q;
     cin >> n >> q;
     set<int> s;
-    for(int i = 1; i <= n; i++){
+
+    for (int i = 0; i < n; i++) {   
         int a; cin >> a;
         if (a == 1) s.insert(i);
     }
-    int now = 1;
-    
-    while(q--){
-        int com, i, x;
+
+    int now = 0;   
+
+    while (q--) {
+        int com;
         cin >> com;
-        if (com == 1){
-            cin >> i;
+
+        if (com == 1) {
+            int i; cin >> i;
+            i--;  
             if (s.find(i) == s.end()) s.insert(i);
             else s.erase(i);
         }
-        else if (com == 2){
-            cin >> x;
-            now = (now - 1 + n + x) % n + 1;
+        else if (com == 2) {
+            int x; cin >> x;
+            now = (now + x) % n;   
         }
-        else if (com == 3){
-            if (s.empty()) cout << -1 << '\n';
-            else{
+        else if (com == 3) {
+            if (s.empty()) {
+                cout << -1 << '\n';
+            } else {
                 auto it = s.lower_bound(now);
-                if (it == s.end()) it = s.begin();  // end면 맨 앞으로 순환
-                int diff = *it - now;
-                if (diff < 0) diff += n;
+                if (it == s.end()) it = s.begin();  
+                int diff = (*it - now + n) % n;     
                 cout << diff << '\n';
             }
         }
