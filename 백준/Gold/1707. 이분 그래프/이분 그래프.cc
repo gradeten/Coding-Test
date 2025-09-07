@@ -9,8 +9,8 @@ int main(){
     while(k--){
         cin >> v >> e;
         
-        vector<int> adj[200005];
-        int color[200005]; fill(color,color + 200005, 0);
+        vector<int> adj[20005];
+        int color[20005]; fill(color,color + 20005, 0);
         queue<int> q;
         
         for(int i = 0; i < e; i++){
