@@ -49,7 +49,7 @@ int main(){
     }
     
     int ans = 0;
-    for(auto& party : parties){
+    for(auto party : parties){
         bool canLie = true;
         for(auto person : party){
             if (know[person]){
