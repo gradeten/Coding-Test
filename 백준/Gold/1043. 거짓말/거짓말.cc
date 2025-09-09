@@ -41,7 +41,7 @@ int main(){
     
     while(!q.empty()){
         int cur = q.front(); q.pop();
-        for(auto nxt : adj[cur]){
+        for(int nxt : adj[cur]){
             if (know[nxt]) continue;
             know[nxt] = true;
             q.push(nxt);
@@ -49,9 +49,9 @@ int main(){
     }
     
     int ans = 0;
-    for(auto party : parties){
+    for(auto& party : parties){
         bool canLie = true;
-        for(auto person : party){
+        for(int person : party){
             if (know[person]){
                 canLie = false;
                 break;
