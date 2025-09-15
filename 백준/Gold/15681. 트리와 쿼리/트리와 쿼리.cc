@@ -26,7 +26,7 @@ int main(){
         adj[v].push_back(u);
     }
     
-    dfs(r,-1);
+    dfs(r,0);
     
     for(int i = 0; i < q; i++){
         cin >> u;
