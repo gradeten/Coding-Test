@@ -15,10 +15,6 @@ int main(){
         deg[v]++;
     }
     
-    for(int i = 1; i <= n; i++){
-        sort(adj[i].begin(), adj[i].end());
-    }
-    
     priority_queue<int, vector<int>, greater<int>> pq;
     for(int i = 1; i <= n; i++){
         if (deg[i] == 0) pq.push(i);
