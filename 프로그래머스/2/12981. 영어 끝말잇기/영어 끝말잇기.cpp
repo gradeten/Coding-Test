@@ -12,14 +12,10 @@ vector<int> solution(int n, vector<string> words) {
         if (s.find(words[i]) != s.end() || 
             words[i][0] != words[i-1][words[i-1].size()-1]){
             if ((i+1) % n == 0){
-                answer.push_back(n);
-                answer.push_back((i+1) / n);
-                break;
+                return {n, (i+1) / n};
             }
             else{
-                answer.push_back((i+1) % n);
-                answer.push_back((i+1) / n + 1);
-                break;
+                return {(i+1) % n, (i+1) / n + 1};
             };
         }
         else{
@@ -27,9 +23,5 @@ vector<int> solution(int n, vector<string> words) {
         }
     }
 
-    if (answer.size() == 0){
-        answer.push_back(0); 
-        answer.push_back(0);
-    }
-    return answer;
+    return {0,0};
 }
