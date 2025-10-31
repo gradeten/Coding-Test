@@ -4,20 +4,13 @@ using namespace std;
 
 int solution(vector<int> citations) {
     int answer = 0; 
-    int sz = citations.size(); 
-    sort(citations.begin(), citations.end());
+    sort(citations.begin(), citations.end(), greater<int>());
     
-    
-    for (int i = citations[sz-1]; i >= 0; i--){
-        int cnt = 0;
-        
-        for(int j = 0; j < sz; j++){
-            if (citations[j] >= i) cnt++;
-        }
-        if (cnt >= i && sz - cnt <= i){
-            answer = i;
+    for(int i = 0; i < citations.size(); i++){
+        if (citations[i] >= i + 1)
+            answer = i + 1;
+        else
             break;
-        }
     }
     
     return answer;
