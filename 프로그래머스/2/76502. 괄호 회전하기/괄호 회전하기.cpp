@@ -30,7 +30,6 @@ int solution(string s) {
     int answer = 0;
     
     for(int i = 0; i < s.size(); i++){
-        // cout << s << '\n';
         if (solve(s)) answer++;
         s += s[0];
         s.erase(0,1);
