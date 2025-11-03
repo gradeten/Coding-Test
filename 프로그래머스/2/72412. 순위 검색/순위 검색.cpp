@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 map<string, vector<int>> m;
 
 void makeKeys(int idx, string key, vector<string>& data, int score){
@@ -15,18 +16,12 @@ vector<int> solution(vector<string> info, vector<string> query) {
     vector<int> answer;
     
     for(int i = 0; i < info.size(); i++){
-        string s = info[i];
-        stringstream ss(s);
-        string word;
-        vector<string> words;
+        string lang, job, career, food;
+        int score;
+        istringstream iss(info[i]);
+        iss >> lang >> job >> career >> food >> score;
         
-        while(getline(ss, word, ' ')){
-            words.push_back(word);
-        }
-        
-        vector<string> data = {words[0], words[1], words[2], words[3]};
-        int score = stoi(words[4]);
-        
+        vector<string> data = {lang, job, career, food};
         makeKeys(0,"", data, score);
     }
     
@@ -35,20 +30,12 @@ vector<int> solution(vector<string> info, vector<string> query) {
     }
     
     for(int i = 0; i < query.size(); i++){
-        string s = query[i];
-        stringstream ss(s);
-        string word;
-        vector<string> words;
-        string key = "";
+        string lang, and1, job, and2, career, and3, food;
+        int num_cond;
+        istringstream iss(query[i]);
+        iss >> lang >> and1 >> job >> and2 >> career >> and3 >> food >> num_cond;
         
-        while(getline(ss, word, ' ')){
-            words.push_back(word);
-        }
-        
-        for(int i = 0; i <= 6; i+=2){
-            key += words[i];
-        }
-        int num_cond = stoi(words[7]);
+        string key = lang + job + career + food;
         
         int result = 0;
         if (m.find(key) != m.end()){
