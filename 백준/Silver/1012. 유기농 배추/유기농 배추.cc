@@ -1,53 +1,50 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define X first
-#define Y second
-int dx[4] = {1,0,-1,0};
+int t, m, n, k, x, y;
 int dy[4] = {0,1,0,-1};
+int dx[4] = {1,0,-1,0};
 
-int main(void){
+int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
     
-    int T;
-    cin >> T;
-    
-    while(T--){
-        int board[50][50] = {0};
-        bool worm[50][50] = {0};
+    cin >> t;
+    while(t--){   
+        cin >> m >> n >> k;
         
-        int M, N, K;
-        cin >> M >> N >> K;
+        int arr[55][55] = {0};
+        bool vis[55][55] = {0};
         
-        queue<pair <int, int> > Q;
-        int area = 0;
-        
-        while(K--){
-            int a, b;
-            cin >> a >> b;
-            board[a][b] = 1;
+        while(k--){
+            cin >> x >> y;
+            arr[y][x] = 1;
         }
         
-        for(int i = 0; i < M; i++){
-            for (int j = 0; j < N; j++){
-                if (!worm[i][j] && board[i][j] == 1){
+        int area = 0;
+        queue<pair<int,int>> q;
+        
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                if (arr[i][j] == 1 ){
+                    if (vis[i][j]) continue;
                     area++;
-                    worm[i][j] = 1;
-                    Q.push({i,j});
-                    while (!Q.empty()){
-                        pair<int, int> cur = Q.front(); Q.pop();
+                    vis[i][j] = 1;
+                    q.push({i,j});
+                    while(!q.empty()){
+                        auto cur = q.front(); q.pop();
                         for(int dir = 0; dir < 4; dir++){
-                            int nx = cur.X + dx[dir];
-                            int ny = cur.Y + dy[dir];
-                            if (nx < 0 || nx >= M || ny < 0 || ny >= N) continue;
-                            if (worm[nx][ny] || board[nx][ny] != 1) continue;
-                            worm[nx][ny] = 1;
-                            Q.push({nx,ny});
+                            int ny = cur.first + dy[dir];
+                            int nx = cur.second + dx[dir];
+                            if (nx < 0 || nx >= m || ny < 0 || ny >= n) continue;
+                            if (vis[ny][nx] || arr[ny][nx] == 0) continue;
+                            q.push({ny,nx});
+                            vis[ny][nx] = 1;
                         }
                     }
                 }
             }
         }
-        cout << area << "\n";
+        
+        cout << area << '\n';
     }
 }
